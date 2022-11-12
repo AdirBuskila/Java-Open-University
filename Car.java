@@ -52,20 +52,10 @@ public class Car {
     }
 
     public boolean better(Car other) {
-        if (_type > other.getType() || _type == other.getType() && other.getIsManual()) {
-            return true;
-        }
-        return false;
+        return (_type > other.getType() || _type == other.getType() && other.getIsManual());
     }
 
     public String toString() {
         return "id: " + _id + " ,type: " + _type + " ,brand: " + _brand + " ,isManual: " + _isManual;
-    }
-
-    public static void main(String[] args) {
-        Car c1 = new Car(0, 'A', "Ford", true);
-        Car c2 = new Car(0, 'A', "Tesla", false);
-        System.out.println(c1.better(c2));
-        System.out.println(c2.better(c1));
     }
 }
