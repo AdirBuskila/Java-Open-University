@@ -129,15 +129,11 @@ public class Date {
     // the conditions checked in the two else if can be in the first but its more
     // readable like this
     public boolean before(Date other) {
-        if (_year < other.getYear()) {
+        if (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
+                || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
             return true;
-        } else if (_year == other.getYear() && _month < other.getMonth()) {
-            return true;
-        } else if (_year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
-            return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public boolean after(Date other) {
