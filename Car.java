@@ -12,13 +12,6 @@ public class Car {
         _isManual = isManual;
     }
 
-    public Car(Car other) {
-        _id = other.getId();
-        _type = other.getType();
-        _brand = other.getBrand();
-        _isManual = other.getIsManual();
-    }
-
     public int getId() {
         return _id;
     }
