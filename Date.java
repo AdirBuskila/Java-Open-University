@@ -41,15 +41,11 @@ public class Date {
     }
 
     public boolean before(Date other) {
-        if (_year < other.getYear()) {
+        if (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
+                || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
             return true;
-        } else if (_year == other.getYear() && _month < other.getMonth()) {
-            return true;
-        } else if (_year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
-            return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public String toString() {
