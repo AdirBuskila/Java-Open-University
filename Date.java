@@ -20,29 +20,16 @@ public class Date {
     private int _year;
 
     public Date(int day, int month, int year) {
-        boolean isLeapYear = false;
         if (day < DAY_MIN || day > DAY_MAX || month < MONTH_MIN || month > MONTH_MAX || year < YEAR_MIN
                 || year > YEAR_MAX) {
-            _day = DEFAULT_DAY;
-            _month = DEFAULT_MONTH;
-            _year = DEFAULT_YEAR;
+            setDefault();
             return;
         }
-        boolean dividableByFour = (year % 4 == 0) ? true : false;
-        boolean dividableByOneHundred = (year % 100 == 0) ? true : false;
-        boolean dividableByFourHundred = (year % 400 == 0) ? true : false;
-        if (dividableByFour && !dividableByOneHundred) {
-            isLeapYear = true;
-        }
-        if (dividableByFour && dividableByOneHundred && dividableByFourHundred) {
-            isLeapYear = true;
-        }
+        boolean isLeapYear = isLeapYear(year);
         switch (month) {
             case 2:
-                if ((isLeapYear && day > FEB_REGULAR_MAX_DAYS) || (!isLeapYear && day > FEB_LEAP_MAX_DAYS)) {
-                    _day = DEFAULT_DAY;
-                    _month = DEFAULT_MONTH;
-                    _year = DEFAULT_YEAR;
+                if ((isLeapYear && day > FEB_LEAP_MAX_DAYS) || (!isLeapYear && day > FEB_REGULAR_MAX_DAYS)) {
+                    setDefault();
                 } else {
                     _day = day;
                     _month = month;
@@ -54,9 +41,7 @@ public class Date {
             case 9:
             case 11:
                 if (day > REGULAR_MONTH_MAX_DAYS) {
-                    _day = DEFAULT_DAY;
-                    _month = DEFAULT_MONTH;
-                    _year = DEFAULT_YEAR;
+                    setDefault();
                 } else {
                     _day = day;
                     _month = month;
@@ -119,21 +104,21 @@ public class Date {
         }
     }
 
+    private void setDefault() {
+        _day = DEFAULT_DAY;
+        _month = DEFAULT_MONTH;
+        _year = DEFAULT_YEAR;
+    }
+
     public boolean equals(Date other) {
-        if (_day == other.getDay() && _month == other.getMonth() && _year == other.getYear()) {
-            return true;
-        }
-        return false;
+        return (_day == other.getDay() && _month == other.getMonth() && _year == other.getYear());
     }
 
     // the conditions checked in the two else if can be in the first but its more
     // readable like this
     public boolean before(Date other) {
-        if (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
-                || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
-            return true;
-        }
-        return false;
+        return (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
+                || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay());
     }
 
     public boolean after(Date other) {
@@ -161,23 +146,13 @@ public class Date {
 
     public Date tomorrow() {
         Date tomorrow = new Date(this);
-        boolean isLeapYear = false;
-        boolean dividableByFour = (_year % 4 == 0) ? true : false;
-        boolean dividableByOneHundred = (_year % 100 == 0) ? true : false;
-        boolean dividableByFourHundred = (_year % 400 == 0) ? true : false;
-
-        if (dividableByFour && !dividableByOneHundred) {
-            isLeapYear = true;
-        }
-        if (dividableByFour && dividableByOneHundred && dividableByFourHundred) {
-            isLeapYear = true;
-        }
+        boolean isLeapYear = isLeapYear(tomorrow.getYear());
         switch (_month) {
             case 2:
-                if (isLeapYear && _day == FEB_REGULAR_MAX_DAYS) {
+                if (isLeapYear && _day == FEB_LEAP_MAX_DAYS) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(tomorrow.getMonth() + 1);
-                } else if (!isLeapYear && _day == FEB_LEAP_MAX_DAYS) {
+                } else if (!isLeapYear && _day == FEB_REGULAR_MAX_DAYS) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(tomorrow.getMonth() + 1);
                 } else {
@@ -220,5 +195,17 @@ public class Date {
                 break;
         }
         return tomorrow;
+    }
+
+    private boolean isLeapYear(int year) {
+        boolean isLeapYear = false;
+        boolean dividableByFour = (_year % 4 == 0) ? true : false;
+        boolean dividableByOneHundred = (_year % 100 == 0) ? true : false;
+        boolean dividableByFourHundred = (_year % 400 == 0) ? true : false;
+        if ((dividableByFour && !dividableByOneHundred)
+                || (dividableByFour && dividableByOneHundred && dividableByFourHundred)) {
+            isLeapYear = true;
+        }
+        return isLeapYear;
     }
 }
