@@ -23,8 +23,8 @@ public class DateDriver {
         System.out.println("Updated month in d1: " + d1.getMonth());
         d2.setYear(d2.getYear() + 1);
         System.out.println("Updated year in d2: " + d2.getYear());
-        System.out.println("Updated d2 = " + (d2.getDay() > 9 ? "0" + d2.getDay() : d2.getDay()) + "/"
-                + (d2.getMonth() > 9 ? "0" + d2.getMonth() : d2.getMonth()) + "/" + d2.getYear());
+        System.out.println("Updated d2 = " + (d2.getDay() < 9 ? "0" + d2.getDay() : d2.getDay()) + "/"
+                + (d2.getMonth() < 9 ? "0" + d2.getMonth() : d2.getMonth()) + "/" + d2.getYear());
         if (d1.equals(d2)) {
             System.out.println("Same Date");
         } else if (d2.before(d1)) {
