@@ -14,10 +14,8 @@ public class CarDriver {
         scanner.nextLine();
         id = (id < ID_MAX_DEFAULT && id > ID_MIN) ? id : ID_MAX_DEFAULT;
         String stringType = scanner.nextLine();
-        char type;
-        if (stringType.equals("A") || stringType.equals("B") || stringType.equals("C") || stringType.equals("D")) {
-            type = stringType.charAt(INDEX_START);
-        } else {
+        char type = stringType.charAt(0);
+        if (type != 'A' && type != 'B' && type != 'C' && type != 'D') {
             type = TYPE_DEFAULT;
         }
         String brand = scanner.nextLine();
@@ -30,9 +28,8 @@ public class CarDriver {
         scanner.nextLine();
         id = (id < ID_MAX_DEFAULT && id > ID_MIN) ? id : ID_MAX_DEFAULT;
         stringType = scanner.nextLine();
-        if (stringType.equals("A") || stringType.equals("B") || stringType.equals("C") || stringType.equals("D")) {
-            type = stringType.charAt(0);
-        } else {
+        type = stringType.charAt(0);
+        if (type != 'A' && type != 'B' && type != 'C' && type != 'D') {
             type = TYPE_DEFAULT;
         }
         brand = scanner.nextLine();
