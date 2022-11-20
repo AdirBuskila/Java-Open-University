@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class CarDriver {
     final static private int ID_MAX_DEFAULT = 9999999;
     final static private int ID_MIN = 1000000;
-    final static private int INDEX_START = 0;
     final static private char TYPE_DEFAULT = 'A';
 
     public static void main(String[] args) {
