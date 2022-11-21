@@ -36,8 +36,7 @@ public class CarDriver {
         Car c2 = new Car(id, type, brand, isManual);
         System.out.println("c1 = " + c1);
         System.out.println("c2 = " + c2);
-        if ((c1.getType() == c2.getType()) && (c1.getBrand() == c2.getBrand())
-                && (c1.isManual() == c2.isManual())) {
+        if (c1.equals(c2)) {
             System.out.println("Same car");
         } else {
             System.out.println("Different car");
