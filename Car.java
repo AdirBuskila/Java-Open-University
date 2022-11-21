@@ -24,7 +24,7 @@ public class Car {
         return _brand;
     }
 
-    public boolean getIsManual() {
+    public boolean isManual() {
         return _isManual;
     }
 
@@ -45,7 +45,7 @@ public class Car {
     }
 
     public boolean better(Car other) {
-        return (_type > other.getType() || _type == other.getType() && other.getIsManual());
+        return (_type > other.getType() || _type == other.getType() && other.isManual());
     }
 
     public String toString() {
