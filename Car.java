@@ -45,7 +45,7 @@ public class Car {
     }
 
     public boolean better(Car other) {
-        return (_type > other.getType() || _type == other.getType() && other.isManual());
+        return (_type > other.getType() || _type == other.getType() && !_isManual);
     }
 
     public String toString() {
