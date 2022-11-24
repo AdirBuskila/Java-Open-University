@@ -37,16 +37,16 @@ public class Rent {
     }
 
     public Car getCar() {
-        return _car;
+        return new Car(_car);
     }
 
     public Date getPickupDate() {
-        return _pickupDate;
+        return new Date(_pickupDate);
 
     }
 
     public Date getReturnDate() {
-        return _returnDate;
+        return new Date(_returnDate);
     }
 
     public boolean equals(Rent other) {
@@ -96,15 +96,5 @@ public class Rent {
     public String toString() {
         return "Name:" + _name + " From:" + _pickupDate + " To:" + _returnDate + " Type:" + _car.getType() + " Days:"
                 + howManyDays() + " Price:" + getPrice();
-    }
-
-    public static void main(String[] args) {
-        Car busiCar = new Car(1234567, 'A', "Ford", false);
-        Date d1 = new Date(10, 3, 2022);
-        Date d2 = new Date(14, 11, 2022);
-        System.out.println(d1.difference(d2));
-        Rent r1 = new Rent("Busi", busiCar, d1, d2);
-        System.out.println(r1.getPrice());
-
     }
 }
