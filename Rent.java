@@ -37,16 +37,16 @@ public class Rent {
     }
 
     public Car getCar() {
-        return _car;
+        return new Car(_car);
     }
 
     public Date getPickupDate() {
-        return _pickupDate;
+        return new Date(_pickupDate);
 
     }
 
     public Date getReturnDate() {
-        return _returnDate;
+        return new Date(_returnDate);
     }
 
     public boolean equals(Rent other) {
