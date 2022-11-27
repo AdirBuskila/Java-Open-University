@@ -22,7 +22,7 @@ public class CarDriver {
         int id = scanner.nextInt();
         scanner.nextLine();
         // checking if id is within range
-        id = (id < ID_MAX_DEFAULT && id > ID_MIN) ? id : ID_MAX_DEFAULT;
+        id = (id <= ID_MAX_DEFAULT && id >= ID_MIN) ? id : ID_MAX_DEFAULT;
         // getting type from the user
         String stringType = scanner.nextLine();
         char type = stringType.charAt(0);
@@ -43,7 +43,7 @@ public class CarDriver {
         // getting id from the user
         scanner.nextLine();
         // checking if id is within range
-        id = (id < ID_MAX_DEFAULT && id > ID_MIN) ? id : ID_MAX_DEFAULT;
+        id = (id <= ID_MAX_DEFAULT && id >= ID_MIN) ? id : ID_MAX_DEFAULT;
         stringType = scanner.nextLine();
         type = stringType.charAt(0);
         // checking if type is valid
