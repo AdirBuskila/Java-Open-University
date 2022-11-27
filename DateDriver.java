@@ -1,4 +1,15 @@
 import java.util.Scanner;
+/*
+ * Adir Buskila
+ * 
+ * The program asks from the user to insert
+ * a new Date (day, month, year)
+ * 1) The program creates two Date instances from the input
+ * 2) The program checks if the two instances are equal
+ * 3) Updates the first instance's month
+ * 4) Checks again if the two instances are equal
+ * 5) Checks which date is before the other date and prints the results
+ */
 
 public class DateDriver {
     public static void main(String[] args) {
@@ -14,6 +25,7 @@ public class DateDriver {
         Date d2 = new Date(d1.getDay(), d1.getMonth(), d1.getYear());
         System.out.println("d1 = " + d1);
         System.out.println("d2 = " + d2);
+        // check if the dates are equal
         if (d1.equals(d2)) {
             System.out.println("Same Date");
         } else {
@@ -23,8 +35,12 @@ public class DateDriver {
         System.out.println("Updated month in d1: " + d1.getMonth());
         d2.setYear(d2.getYear() + 1);
         System.out.println("Updated year in d2: " + d2.getYear());
+        // print by toString() format without toString()
         System.out.println("Updated d2 = " + (d2.getDay() < 9 ? "0" + d2.getDay() : d2.getDay()) + "/"
                 + (d2.getMonth() < 9 ? "0" + d2.getMonth() : d2.getMonth()) + "/" + d2.getYear());
+
+        // check if the dates are equal
+        // if not equal print the order
         if (d1.equals(d2)) {
             System.out.println("Same Date");
         } else if (d2.before(d1)) {
