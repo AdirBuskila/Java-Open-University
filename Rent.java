@@ -8,6 +8,7 @@ public class Rent {
     final private static int RENTAL_PER_DAY_D = 240;
     final private static int RENTAL_DAYS_FOR_DISCOUNT = 7;
     final private static int DAYS_IN_WEEK = 7;
+    final private static double TEN_PERCENT_DISCOUNT = 0.9;
 
     private String _name;
     private Car _car;
@@ -27,17 +28,35 @@ public class Rent {
 
     public Rent(Rent other) {
         _name = other.getName();
-        _car = other.getCar();
-        _pickupDate = other.getPickupDate();
-        _returnDate = other.getReturnDate();
+        _car = new Car(other.getCar());
+        _pickupDate = new Date(other.getPickupDate());
+        _returnDate = new Date(other.getReturnDate());
+    }
+
+    public void setName(String name) {
+        if (name != "") {
+            _name = name;
+        }
     }
 
     public String getName() {
         return _name;
     }
 
+    public void setCar(Car car) {
+        if (car != null) {
+            _car = new Car(car);
+        }
+    }
+
     public Car getCar() {
         return new Car(_car);
+    }
+
+    public void setPickDate(Date pickDate) {
+        if (pickDate != null) {
+            _pickupDate = new Date(pickDate);
+        }
     }
 
     public Date getPickupDate() {
@@ -45,12 +64,20 @@ public class Rent {
 
     }
 
+    public void setReturnDate(Date returnDate) {
+        if (returnDate != null) {
+            _returnDate = new Date(returnDate);
+        }
+    }
+
     public Date getReturnDate() {
         return new Date(_returnDate);
     }
 
     public boolean equals(Rent other) {
-        return (_name == other.getName() && _car.equals(other.getCar()) && _pickupDate.equals(other.getPickupDate())
+        return (_name.equals(other.getName())
+                && _car.equals(other.getCar())
+                && _pickupDate.equals(other.getPickupDate())
                 && _returnDate.equals(other.getReturnDate()));
     }
 
@@ -65,16 +92,20 @@ public class Rent {
         int price = 0;
         switch (_car.getType()) {
             case 'A':
-                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_A * 0.9) + (remainingDays * RENTAL_PER_DAY_A);
+                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_A * TEN_PERCENT_DISCOUNT)
+                        + (remainingDays * RENTAL_PER_DAY_A);
                 break;
             case 'B':
-                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_B * 0.9) + (remainingDays * RENTAL_PER_DAY_B);
+                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_B * TEN_PERCENT_DISCOUNT)
+                        + (remainingDays * RENTAL_PER_DAY_B);
                 break;
             case 'C':
-                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_C * 0.9) + (remainingDays * RENTAL_PER_DAY_C);
+                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_C * TEN_PERCENT_DISCOUNT)
+                        + (remainingDays * RENTAL_PER_DAY_C);
                 break;
             case 'D':
-                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_D * 0.9) + (remainingDays * RENTAL_PER_DAY_D);
+                price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_D * TEN_PERCENT_DISCOUNT)
+                        + (remainingDays * RENTAL_PER_DAY_D);
                 break;
 
             default:
@@ -102,9 +133,13 @@ public class Rent {
         Car busiCar = new Car(1234567, 'A', "Ford", false);
         Date d1 = new Date(10, 3, 2022);
         Date d2 = new Date(14, 11, 2022);
-        System.out.println(d1.difference(d2));
         Rent r1 = new Rent("Busi", busiCar, d1, d2);
-        System.out.println(r1.getPrice());
+        Rent r2 = new Rent("Busi", busiCar, d1, d2);
+        System.out.println("---equals---");
+        System.out.println(r1.equals(r2)); // true
+        System.out.println("---howManyDays---");
+        r1 = new Rent("Busi", busiCar, new Date(1, 2, 2022), new Date(5, 2, 2022));
+        System.out.println(r1.howManyDays()); // 4
 
     }
 }
