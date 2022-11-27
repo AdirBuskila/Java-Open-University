@@ -65,7 +65,7 @@ public class Car {
     }
 
     public boolean isBetter(Car other) {
-        return (_type > other.getType() || _type == other.getType() && other.getIsManual());
+        return (_type > other.getType() || _type == other.getType() && !_isManual && other.getIsManual());
     }
 
     public boolean worse(Car other) {
@@ -79,4 +79,5 @@ public class Car {
     public boolean equals(Car other) {
         return (_type == other.getType() && _brand == other.getBrand() && _isManual == other.getIsManual());
     }
+
 }
