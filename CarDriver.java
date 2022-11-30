@@ -59,7 +59,7 @@ public class CarDriver {
         System.out.println("c1 = " + c1);
         System.out.println("c2 = " + c2);
         // checking if c1 and c2 are equal
-        if (c1.equals(c2)) {
+        if (c1.getType()==c2.getType()&&c1.getBrand().equals(c2.getBrand())&&c1.isManual()==c2.isManual) {
             System.out.println("Same car");
         } else {
             System.out.println("Different car");
