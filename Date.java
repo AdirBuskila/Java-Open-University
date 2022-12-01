@@ -122,7 +122,7 @@ public class Date {
     }
 
     public boolean after(Date other) {
-        return (!before(other));
+        return (!before(other) && !this.equals(other));
     }
 
     public String toString() {
