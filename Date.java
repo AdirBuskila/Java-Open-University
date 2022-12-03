@@ -19,30 +19,21 @@ public class Date {
     private int _month;
     private int _year;
 
+    // Date constructor
     public Date(int day, int month, int year) {
-        boolean isLeapYear = false;
+        // checking if the values are not within the max range
         if (day < DAY_MIN || day > DAY_MAX || month < MONTH_MIN || month > MONTH_MAX || year < YEAR_MIN
                 || year > YEAR_MAX) {
-            _day = DEFAULT_DAY;
-            _month = DEFAULT_MONTH;
-            _year = DEFAULT_YEAR;
+            setDefault();
             return;
         }
-        boolean dividableByFour = (year % 4 == 0) ? true : false;
-        boolean dividableByOneHundred = (year % 100 == 0) ? true : false;
-        boolean dividableByFourHundred = (year % 400 == 0) ? true : false;
-        if (dividableByFour && !dividableByOneHundred) {
-            isLeapYear = true;
-        }
-        if (dividableByFour && dividableByOneHundred && dividableByFourHundred) {
-            isLeapYear = true;
-        }
+        boolean isLeapYear = isLeapYear(year);
         switch (month) {
             case 2:
-                if ((isLeapYear && day > FEB_REGULAR_MAX_DAYS) || (!isLeapYear && day > FEB_LEAP_MAX_DAYS)) {
-                    _day = DEFAULT_DAY;
-                    _month = DEFAULT_MONTH;
-                    _year = DEFAULT_YEAR;
+                // is leap year and the day is greater than the max
+                // is not leap year and day is greater than feb max
+                if ((isLeapYear && day > FEB_LEAP_MAX_DAYS) || (!isLeapYear && day > FEB_REGULAR_MAX_DAYS)) {
+                    setDefault();
                 } else {
                     _day = day;
                     _month = month;
@@ -53,10 +44,9 @@ public class Date {
             case 6:
             case 9:
             case 11:
+                // day is greater than regular month max
                 if (day > REGULAR_MONTH_MAX_DAYS) {
-                    _day = DEFAULT_DAY;
-                    _month = DEFAULT_MONTH;
-                    _year = DEFAULT_YEAR;
+                    setDefault();
                 } else {
                     _day = day;
                     _month = month;
@@ -70,6 +60,8 @@ public class Date {
             case 8:
             case 10:
             case 12:
+                // no need for checking at this point
+                // because already checked if within range at the start
                 _day = day;
                 _month = month;
                 _year = year;
@@ -88,7 +80,11 @@ public class Date {
     }
 
     public void setDay(int day) {
+        // creating a new date with the new given value
         Date checkedDate = new Date(day, this.getMonth(), this.getYear());
+        // if the checkedDate values are equal to the unchanged values,
+        // and the checkedDate.day is equal to the given day,
+        // it's a valid date
         if (day == checkedDate.getDay() && this.getMonth() == checkedDate.getMonth()
                 && this.getYear() == checkedDate.getYear()) {
             _day = day;
@@ -100,7 +96,11 @@ public class Date {
     }
 
     public void setMonth(int month) {
+        // creating a new date with the new given value
         Date checkedDate = new Date(this.getDay(), month, this.getYear());
+        // if the checkedDate values are equal to the unchanged values,
+        // and the checkedDate.month is equal to the given month,
+        // it's a valid date
         if (this.getDay() == checkedDate.getDay() && month == checkedDate.getMonth()
                 && this.getYear() == checkedDate.getYear()) {
             _month = month;
@@ -112,36 +112,38 @@ public class Date {
     }
 
     public void setYear(int year) {
-        Date checkedDate = new Date(this.getYear(), this.getMonth(), year);
+        // creating a new date with the new given value
+        Date checkedDate = new Date(this.getDay(), this.getMonth(), year);
+        // if the checkedDate values are equal to the unchanged values,
+        // and the checkedDate.year is equal to the given year,
+        // it's a valid date
         if (this.getDay() == checkedDate.getDay() && this.getMonth() == checkedDate.getMonth()
-                && this.getYear() == year) {
+                && checkedDate.getYear() == year) {
             _year = year;
         }
     }
 
+    private void setDefault() {
+        _day = DEFAULT_DAY;
+        _month = DEFAULT_MONTH;
+        _year = DEFAULT_YEAR;
+    }
+
     public boolean equals(Date other) {
-        if (_day == other.getDay() && _month == other.getMonth() && _year == other.getYear()) {
-            return true;
-        }
-        return false;
+        return (_day == other.getDay() && _month == other.getMonth() && _year == other.getYear());
     }
 
     // the conditions checked in the two else if can be in the first but its more
     // readable like this
     public boolean before(Date other) {
-        if (_year < other.getYear()) {
-            return true;
-        } else if (_year == other.getYear() && _month < other.getMonth()) {
-            return true;
-        } else if (_year == other.getYear() && _month == other.getMonth() && _day < other.getDay()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
+                || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay());
     }
 
     public boolean after(Date other) {
-        return (!before(other));
+        // returning the opposite of before
+        // except for the case when they are equal
+        return (!before(other) && !this.equals(other));
     }
 
     public String toString() {
@@ -151,6 +153,7 @@ public class Date {
     }
 
     public int difference(Date other) {
+        // returning the absolute value between the two dates
         return Math.abs(calculateDate(_day, _month, _year)
                 - other.calculateDate(other.getDay(), other.getMonth(), other.getYear()));
     }
@@ -164,27 +167,19 @@ public class Date {
     }
 
     public Date tomorrow() {
+        // creating a new date with the values of the current date
         Date tomorrow = new Date(this);
-        boolean isLeapYear = false;
-        boolean dividableByFour = (_year % 4 == 0) ? true : false;
-        boolean dividableByOneHundred = (_year % 100 == 0) ? true : false;
-        boolean dividableByFourHundred = (_year % 400 == 0) ? true : false;
-
-        if (dividableByFour && !dividableByOneHundred) {
-            isLeapYear = true;
-        }
-        if (dividableByFour && dividableByOneHundred && dividableByFourHundred) {
-            isLeapYear = true;
-        }
+        // calculating leap year
+        boolean isLeapYear = isLeapYear(tomorrow.getYear());
         switch (_month) {
             case 2:
-                if (isLeapYear && _day == FEB_REGULAR_MAX_DAYS) {
-                    tomorrow.setDay(DAY_MIN);
-                    tomorrow.setMonth(tomorrow.getMonth() + 1);
-                } else if (!isLeapYear && _day == FEB_LEAP_MAX_DAYS) {
+                // leap year and max days: set day to min, set month to +1
+                // not leap year and max days: set day to min, set month to next month
+                if ((isLeapYear && _day == FEB_LEAP_MAX_DAYS) || (!isLeapYear && _day == FEB_REGULAR_MAX_DAYS)) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(tomorrow.getMonth() + 1);
                 } else {
+                    // next day
                     tomorrow.setDay(tomorrow.getDay() + 1);
                 }
                 break;
@@ -194,10 +189,12 @@ public class Date {
             case 7:
             case 8:
             case 10:
+                // day is max: set day to min, month to next month
                 if (_day == DAY_MAX) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(tomorrow.getMonth() + 1);
                 } else {
+                    // next day
                     tomorrow.setDay(tomorrow.getDay() + 1);
                 }
                 break;
@@ -205,24 +202,48 @@ public class Date {
             case 6:
             case 9:
             case 11:
+                // day is max: set day to min, month to next month
                 if (_day == REGULAR_MONTH_MAX_DAYS) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(tomorrow.getMonth() + 1);
                 } else {
+                    // next day
                     tomorrow.setDay(tomorrow.getDay() + 1);
                 }
                 break;
             case 12:
+                // day is max: set day to min, set month to min, set year to next year
                 if (_day == DAY_MAX) {
                     tomorrow.setDay(DAY_MIN);
                     tomorrow.setMonth(MONTH_MIN);
                     tomorrow.setYear(tomorrow.getYear() + 1);
                 } else {
+                    // next day
                     tomorrow.setDay(tomorrow.getDay() + 1);
                 }
             default:
                 break;
         }
         return tomorrow;
+    }
+
+    public boolean isLeapYear(int year) {
+        // instantiating first to false
+        boolean isLeapYear = false;
+        // checking if dividable by four with no remainder
+        boolean dividableByFour = (year % 4 == 0) ? true : false;
+        // checking if dividable by one hundred with no remainder
+        boolean dividableByOneHundred = (year % 100 == 0) ? true : false;
+        // checking if dividable by four hundred with no remainder
+        boolean dividableByFourHundred = (year % 400 == 0) ? true : false;
+        // case 1 leap year = dividableByFour and not dividableByOneHundred
+        // case 2 leap year = dividableByFour and dividableByOneHundred and
+        // dividableByFourHundred
+        if ((dividableByFour && !dividableByOneHundred)
+                || (dividableByFour && dividableByOneHundred && dividableByFourHundred)) {
+            isLeapYear = true;
+        }
+        // if no change to isLeapYear false is returned
+        return isLeapYear;
     }
 }
