@@ -9,7 +9,9 @@ public class Car {
     private boolean _isManual;
 
     public Car(int id, char type, String brand, boolean isManual) {
+        // checking if the id is within range
         _id = (id > ID_MAX_DEFAULT || id < MIN_ID) ? ID_MAX_DEFAULT : id;
+        // checking if the type is a valid type
         if (type == 'A' || type == 'B' || type == 'C' || type == 'D') {
             _type = type;
         } else {
@@ -43,12 +45,14 @@ public class Car {
     }
 
     public void setId(int id) {
+        // checking if the id is within range
         if (id <= ID_MAX_DEFAULT && id >= MIN_ID) {
             _id = id;
         }
     }
 
     public void setType(char type) {
+        // checking if the type is a valid type
         if (type == 'A' || type == 'B' || type == 'C' || type == 'D') {
             _type = type;
         }
@@ -65,7 +69,7 @@ public class Car {
     }
 
     public boolean isBetter(Car other) {
-        return (_type > other.getType() || _type == other.getType() && other.getIsManual());
+        return (_type > other.getType() || _type == other.getType() && !_isManual && other.getIsManual());
     }
 
     public boolean worse(Car other) {
@@ -79,4 +83,5 @@ public class Car {
     public boolean equals(Car other) {
         return (_type == other.getType() && _brand == other.getBrand() && _isManual == other.getIsManual());
     }
+
 }
