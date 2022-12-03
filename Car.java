@@ -25,7 +25,7 @@ public class Car {
         _id = other.getId();
         _type = other.getType();
         _brand = other.getBrand();
-        _isManual = other.getIsManual();
+        _isManual = other.isManual();
     }
 
     public int getId() {
@@ -40,7 +40,7 @@ public class Car {
         return _brand;
     }
 
-    public boolean getIsManual() {
+    public boolean isManual() {
         return _isManual;
     }
 
@@ -69,11 +69,11 @@ public class Car {
     }
 
     public boolean isBetter(Car other) {
-        return (_type > other.getType() || _type == other.getType() && !_isManual && other.getIsManual());
+        return (_type > other.getType() || _type == other.getType() && !_isManual && other.isManual());
     }
 
     public boolean worse(Car other) {
-        return (!isBetter(other));
+        return (!isBetter(other) && !equals(other));
     }
 
     public String toString() {
@@ -81,7 +81,7 @@ public class Car {
     }
 
     public boolean equals(Car other) {
-        return (_type == other.getType() && _brand == other.getBrand() && _isManual == other.getIsManual());
+        return (_type == other.getType() && _brand == other.getBrand() && _isManual == other.isManual());
     }
 
 }
