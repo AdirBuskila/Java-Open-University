@@ -19,6 +19,8 @@ public class Rent {
         _name = name;
         _car = car;
         _pickupDate = pickupDate;
+        // checking if the difference between the pickDate and
+        // the returnDate is less than 1
         if (pickupDate.difference(returnDate) < MIN_DAYS) {
             _returnDate = _pickupDate.tomorrow();
         } else {
@@ -34,6 +36,7 @@ public class Rent {
     }
 
     public void setName(String name) {
+        // checking if the name is not an empty string
         if (name != "") {
             _name = name;
         }
@@ -44,6 +47,7 @@ public class Rent {
     }
 
     public void setCar(Car car) {
+        // checking if the car is not equal to null
         if (car != null) {
             _car = new Car(car);
         }
@@ -54,6 +58,7 @@ public class Rent {
     }
 
     public void setPickDate(Date pickDate) {
+        // checking if the pickDate is not equal to null
         if (pickDate != null) {
             _pickupDate = new Date(pickDate);
         }
@@ -65,6 +70,7 @@ public class Rent {
     }
 
     public void setReturnDate(Date returnDate) {
+        // checking if the returnDate is not equal to null
         if (returnDate != null) {
             _returnDate = new Date(returnDate);
         }
@@ -82,15 +88,25 @@ public class Rent {
     }
 
     public int howManyDays() {
+        // returning how many days is between the pickupDate
+        // and the returnDate
         return (_pickupDate.difference(_returnDate));
     }
 
     public int getPrice() {
+        // getting the how many rental days are there
         int rentalDays = howManyDays();
+        // checking how many whole weeks are there in the rend period
         int wholeWeeks = rentalDays / RENTAL_DAYS_FOR_DISCOUNT;
+        // checking how many remaining days are there, ie: 15 % 7 = 1
         int remainingDays = rentalDays % RENTAL_DAYS_FOR_DISCOUNT;
         int price = 0;
         switch (_car.getType()) {
+            // calculating by:
+            // 1) whole weeks multiplied by 7 (days in week) multiplied by rental per type
+            // multiplied by ten percent discount
+            // plus
+            // 2) remaining days multiplied by rental per type
             case 'A':
                 price = (int) (wholeWeeks * DAYS_IN_WEEK * RENTAL_PER_DAY_A * TEN_PERCENT_DISCOUNT)
                         + (remainingDays * RENTAL_PER_DAY_A);
@@ -115,12 +131,17 @@ public class Rent {
     }
 
     public int upgrade(Car newCar) {
+        // checking if the current car is better than the new car
         if (_car.isBetter(newCar)) {
             return 0;
         }
+        // getting the old price
         int oldPrice = getPrice();
-        _car = newCar;
+        // setting _car to the new car
+        setCar(newCar);
+        // getting the new price
         int newPrice = getPrice();
+        // returning the difference between the prices
         return (newPrice - oldPrice);
     }
 
@@ -138,8 +159,13 @@ public class Rent {
         System.out.println("---equals---");
         System.out.println(r1.equals(r2)); // true
         System.out.println("---howManyDays---");
-        r1 = new Rent("Busi", busiCar, new Date(1, 2, 2022), new Date(5, 2, 2022));
-        System.out.println(r1.howManyDays()); // 4
+        r1 = new Rent("Busi", busiCar, new Date(1, 2, 2022), new Date(8, 2, 2022));
+        System.out.println(r1.howManyDays()); // 7
+        System.out.println("---getPrice---");
+        System.out.println(r1.getPrice()); // 630
+        r1.setReturnDate(new Date(10, 2, 2022));
+        System.out.println(r1.howManyDays()); // 9
+        System.out.println(r1.getPrice()); // 830
 
     }
 }
