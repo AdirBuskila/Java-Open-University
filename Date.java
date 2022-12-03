@@ -113,12 +113,12 @@ public class Date {
 
     public void setYear(int year) {
         // creating a new date with the new given value
-        Date checkedDate = new Date(this.getYear(), this.getMonth(), year);
+        Date checkedDate = new Date(this.getDay(), this.getMonth(), year);
         // if the checkedDate values are equal to the unchanged values,
         // and the checkedDate.year is equal to the given year,
         // it's a valid date
         if (this.getDay() == checkedDate.getDay() && this.getMonth() == checkedDate.getMonth()
-                && this.getYear() == year) {
+                && checkedDate.getYear() == year) {
             _year = year;
         }
     }
@@ -227,15 +227,15 @@ public class Date {
         return tomorrow;
     }
 
-    private boolean isLeapYear(int year) {
+    public boolean isLeapYear(int year) {
         // instantiating first to false
         boolean isLeapYear = false;
         // checking if dividable by four with no remainder
-        boolean dividableByFour = (_year % 4 == 0) ? true : false;
+        boolean dividableByFour = (year % 4 == 0) ? true : false;
         // checking if dividable by one hundred with no remainder
-        boolean dividableByOneHundred = (_year % 100 == 0) ? true : false;
+        boolean dividableByOneHundred = (year % 100 == 0) ? true : false;
         // checking if dividable by four hundred with no remainder
-        boolean dividableByFourHundred = (_year % 400 == 0) ? true : false;
+        boolean dividableByFourHundred = (year % 400 == 0) ? true : false;
         // case 1 leap year = dividableByFour and not dividableByOneHundred
         // case 2 leap year = dividableByFour and dividableByOneHundred and
         // dividableByFourHundred
