@@ -79,7 +79,7 @@ public class AdirRentTest {
         test(r5.upgrade(carB) == 680);
         r5.setCar(carA);
         test(r5.upgrade(carA) == 0);
-        System.out.println("---Testing toString");
+        System.out.println("---Testing toString---");
         test(r1.toString().equals(r1ToString));
         test(r2.toString().equals(r2ToString));
         test(r3.toString().equals(r3ToString));
