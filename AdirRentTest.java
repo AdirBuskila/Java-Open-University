@@ -36,7 +36,6 @@ public class AdirRentTest {
         String r8ToString = "Name:Rent 8 From:01/01/2000 To:16/01/2000 Type:D Days:15 Price:3264";
 
         System.out.println("---Testing constructor---");
-        System.out.println("r4 = " + r4);
         test(!r4.getPickupDate().equals(r4.getReturnDate()));
         test(r4.getPickupDate().tomorrow().equals(r4.getPickupDate().tomorrow()));
         Rent rent1 = new Rent(r1);
