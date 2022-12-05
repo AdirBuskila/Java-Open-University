@@ -73,7 +73,7 @@ public class Car {
     }
 
     public boolean worse(Car other) {
-        return (!better(other) && !equals(other));
+        return other.better(this);
     }
 
     public String toString() {
