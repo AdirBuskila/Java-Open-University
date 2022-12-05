@@ -31,7 +31,7 @@ public class Rent {
     public Rent(Rent other) {
         _name = other.getName();
         _car = new Car(other.getCar());
-        _pickupDate = new Date(other.getPickupDate());
+        _pickupDate = new Date(other.getPickDate());
         _returnDate = new Date(other.getReturnDate());
     }
 
@@ -64,7 +64,7 @@ public class Rent {
         }
     }
 
-    public Date getPickupDate() {
+    public Date getPickDate() {
         return new Date(_pickupDate);
 
     }
@@ -83,7 +83,7 @@ public class Rent {
     public boolean equals(Rent other) {
         return (_name.equals(other.getName())
                 && _car.equals(other.getCar())
-                && _pickupDate.equals(other.getPickupDate())
+                && _pickupDate.equals(other.getPickDate())
                 && _returnDate.equals(other.getReturnDate()));
     }
 
