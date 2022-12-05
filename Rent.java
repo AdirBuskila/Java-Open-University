@@ -132,7 +132,7 @@ public class Rent {
 
     public int upgrade(Car newCar) {
         // checking if the current car is better than the new car
-        if (_car.isBetter(newCar)) {
+        if (_car.better(newCar)) {
             return 0;
         }
         // getting the old price

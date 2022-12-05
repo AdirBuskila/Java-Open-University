@@ -68,12 +68,12 @@ public class Car {
         _isManual = isManual;
     }
 
-    public boolean isBetter(Car other) {
+    public boolean better(Car other) {
         return (_type > other.getType() || _type == other.getType() && !_isManual && other.isManual());
     }
 
     public boolean worse(Car other) {
-        return (!isBetter(other) && !equals(other));
+        return other.better(this);
     }
 
     public String toString() {
