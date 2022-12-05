@@ -113,11 +113,12 @@ public class AdirCarTest {
     }
 
     private static void test(boolean testCondition) {
-        System.out.println("TestNum: " + (++testNumber));
+        String msg;
         if (testCondition) {
-            System.out.println("OK");
+            msg = "OK";
         } else {
-            System.out.println("ERROR");
+            msg = "ERROR";
         }
+        System.out.println("TestNum: " + (++testNumber) + " " + msg);
     }
 }

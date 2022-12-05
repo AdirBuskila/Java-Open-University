@@ -80,7 +80,6 @@ public class AdirRentTest {
         r5.setCar(carA);
         test(r5.upgrade(carA) == 0);
         System.out.println("---Testing toString");
-        System.out.println(r1);
         test(r1.toString().equals(r1ToString));
         test(r2.toString().equals(r2ToString));
         test(r3.toString().equals(r3ToString));
@@ -92,11 +91,12 @@ public class AdirRentTest {
     }
 
     private static void test(boolean testCondition) {
-        System.out.println("TestNum: " + (++testNumber));
+        String msg;
         if (testCondition) {
-            System.out.println("OK");
+            msg = "OK";
         } else {
-            System.out.println("ERROR");
+            msg = "ERROR";
         }
+        System.out.println("TestNum: " + (++testNumber) + " " + msg);
     }
 }
