@@ -1,14 +1,10 @@
+
 /*
  * Created by: Adir Buskila
  * required Class: Car
  * if you find any bugs at the test please notify me :)
  */
 public class AdirCarTest {
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_GREEN = "\u001B[32m";
 
     private static int testNumber = 0;
 
@@ -117,11 +113,11 @@ public class AdirCarTest {
     }
 
     private static void test(boolean testCondition) {
-        System.out.println(ANSI_BLUE + "TestNum: " + (++testNumber) + ANSI_RESET);
+        System.out.println("TestNum: " + (++testNumber));
         if (testCondition) {
-            System.out.println(ANSI_GREEN + "OK" + ANSI_RESET);
+            System.out.println("OK");
         } else {
-            System.out.println(ANSI_RED + "ERROR" + ANSI_RESET);
+            System.out.println("ERROR");
         }
     }
 }
