@@ -12,13 +12,10 @@ public class Car {
         // checking if the id is within range
         _id = (id > ID_MAX_DEFAULT || id < MIN_ID) ? ID_MAX_DEFAULT : id;
         // checking if the type is a valid type
-        if (type == 'A' || type == 'B' || type == 'C' || type == 'D') {
-            _type = type;
-        } else {
-            _type = TYPE_DEFAULT;
-        }
+        _type = (type == 'A' || type == 'B' || type == 'C' || type == 'D') ? type : TYPE_DEFAULT;
         _brand = brand;
         _isManual = isManual;
+
     }
 
     public Car(Car other) {
