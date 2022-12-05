@@ -54,7 +54,7 @@ public class Company {
         int index = _noOfRents;
         if (isPickup) {
             for (int i = 0; i < _noOfRents; i++) {
-                Date curPickupDate = _rents[i].getPickupDate();
+                Date curPickupDate = _rents[i].getPickDate();
                 if (pickupDate.before(curPickupDate)) {
                     return i;
                 }

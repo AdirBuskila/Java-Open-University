@@ -12,26 +12,23 @@ public class Rent {
 
     private String _name;
     private Car _car;
-    private Date _pickupDate;
+    private Date _pickDate;
     private Date _returnDate;
 
     public Rent(String name, Car car, Date pickupDate, Date returnDate) {
         _name = name;
         _car = car;
-        _pickupDate = pickupDate;
+        _pickDate = pickupDate;
         // checking if the difference between the pickDate and
         // the returnDate is less than 1
-        if (pickupDate.difference(returnDate) < MIN_DAYS) {
-            _returnDate = _pickupDate.tomorrow();
-        } else {
-            _returnDate = returnDate;
-        }
+        _returnDate = (pickupDate.difference(returnDate) < MIN_DAYS) ? _pickDate.tomorrow() : returnDate;
+
     }
 
     public Rent(Rent other) {
         _name = other.getName();
         _car = new Car(other.getCar());
-        _pickupDate = new Date(other.getPickupDate());
+        _pickDate = new Date(other.getPickDate());
         _returnDate = new Date(other.getReturnDate());
     }
 
@@ -60,12 +57,12 @@ public class Rent {
     public void setPickDate(Date pickDate) {
         // checking if the pickDate is not equal to null
         if (pickDate != null) {
-            _pickupDate = new Date(pickDate);
+            _pickDate = new Date(pickDate);
         }
     }
 
-    public Date getPickupDate() {
-        return new Date(_pickupDate);
+    public Date getPickDate() {
+        return new Date(_pickDate);
 
     }
 
@@ -83,14 +80,14 @@ public class Rent {
     public boolean equals(Rent other) {
         return (_name.equals(other.getName())
                 && _car.equals(other.getCar())
-                && _pickupDate.equals(other.getPickupDate())
+                && _pickDate.equals(other.getPickDate())
                 && _returnDate.equals(other.getReturnDate()));
     }
 
     public int howManyDays() {
         // returning how many days is between the pickupDate
         // and the returnDate
-        return (_pickupDate.difference(_returnDate));
+        return (_pickDate.difference(_returnDate));
     }
 
     public int getPrice() {
@@ -146,7 +143,7 @@ public class Rent {
     }
 
     public String toString() {
-        return "Name:" + _name + " From:" + _pickupDate + " To:" + _returnDate + " Type:" + _car.getType() + " Days:"
+        return "Name:" + _name + " From:" + _pickDate + " To:" + _returnDate + " Type:" + _car.getType() + " Days:"
                 + howManyDays() + " Price:" + getPrice();
     }
 
