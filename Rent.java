@@ -21,11 +21,8 @@ public class Rent {
         _pickDate = pickupDate;
         // checking if the difference between the pickDate and
         // the returnDate is less than 1
-        if (pickupDate.difference(returnDate) < MIN_DAYS) {
-            _returnDate = _pickDate.tomorrow();
-        } else {
-            _returnDate = returnDate;
-        }
+        _returnDate = (pickupDate.difference(returnDate) < MIN_DAYS) ? _pickDate.tomorrow() : returnDate;
+
     }
 
     public Rent(Rent other) {
