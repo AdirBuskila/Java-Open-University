@@ -141,9 +141,8 @@ public class Date {
     }
 
     public boolean after(Date other) {
-        // returning the opposite of before
-        // except for the case when they are equal
-        return (!before(other) && !this.equals(other));
+        // returning before with other in the parameter
+        return other.before(this);
     }
 
     public String toString() {
