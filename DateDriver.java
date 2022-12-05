@@ -41,6 +41,7 @@ public class DateDriver {
 
         // check if the dates are equal
         // if not equal print the order
+        // of the dates by: before, after
         if (d1.equals(d2)) {
             System.out.println("Same Date");
         } else if (d2.before(d1)) {
