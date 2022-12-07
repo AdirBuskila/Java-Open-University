@@ -19,7 +19,19 @@ public class Date {
     private int _month;
     private int _year;
 
-    // Date constructor
+    /*
+     * public Date(int day,
+     * int month,
+     * int year)
+     * 
+     * If the given date is valid - creates a new Date object, otherwise creates the
+     * date 1/1/2000
+     * Parameters:
+     * day - the day in the month (1-31)
+     * month - the month in the year (1-12)
+     * year - the year (4 digits)
+     * 
+     */
     public Date(int day, int month, int year) {
         // checking if the values are not within the max range
         if (day < DAY_MIN || day > DAY_MAX || month < MONTH_MIN || month > MONTH_MAX || year < YEAR_MIN
@@ -71,14 +83,33 @@ public class Date {
 
     }
 
+    /*
+     * public Date(Date other)
+     * 
+     * Copy constructor
+     * Parameters:
+     * other - the date to be copied
+     */
     public Date(Date other) {
         this(other.getDay(), other.getMonth(), other.getYear());
     }
 
+    /*
+     * public int getDay()
+     * Gets the day
+     * Returns:
+     * the day
+     */
     public int getDay() {
         return _day;
     }
 
+    /*
+     * public void setDay(int dayToSet)
+     * Set the day (only if date remains valid)
+     * Parameters:
+     * dayToSet - the day value to be set
+     */
     public void setDay(int day) {
         // creating a new date with the new given value
         Date checkedDate = new Date(day, this.getMonth(), this.getYear());
@@ -91,10 +122,22 @@ public class Date {
         }
     }
 
+    /*
+     * public int getMonth()
+     * Gets the month
+     * Returns:
+     * the month
+     */
     public int getMonth() {
         return _month;
     }
 
+    /*
+     * public void setMonth(int monthToSet)
+     * Set the month (only if date remains valid)
+     * Parameters:
+     * monthToSet - the month value to be set
+     */
     public void setMonth(int month) {
         // creating a new date with the new given value
         Date checkedDate = new Date(this.getDay(), month, this.getYear());
@@ -107,10 +150,22 @@ public class Date {
         }
     }
 
+    /*
+     * public int getYear()
+     * Gets the year
+     * Returns:
+     * the year
+     */
     public int getYear() {
         return _year;
     }
 
+    /*
+     * public void setYear(int yearToSet)
+     * Sets the year (only if date remains valid)
+     * Parameters:
+     * yearToSet - the year value to be set
+     */
     public void setYear(int year) {
         // creating a new date with the new given value
         Date checkedDate = new Date(this.getDay(), this.getMonth(), year);
@@ -123,34 +178,68 @@ public class Date {
         }
     }
 
-    private void setDefault() {
-        _day = DEFAULT_DAY;
-        _month = DEFAULT_MONTH;
-        _year = DEFAULT_YEAR;
-    }
-
+    /*
+     * public boolean equals(Date other)
+     * Check if 2 dates are the same
+     * Parameters:
+     * other - the date to compare this date to
+     * Returns:
+     * true if the dates are the same, otherwise false
+     */
     public boolean equals(Date other) {
         return (_day == other.getDay() && _month == other.getMonth() && _year == other.getYear());
     }
 
-    // the conditions checked in the two else if can be in the first but its more
-    // readable like this
+    /*
+     * public boolean before(Date other)
+     * Check if this date is before other date
+     * Parameters:
+     * other - date to compare this date to
+     * Returns:
+     * true if this date is before other date, otherwise false
+     */
     public boolean before(Date other) {
         return (_year < other.getYear() || _year == other.getYear() && _month < other.getMonth()
                 || _year == other.getYear() && _month == other.getMonth() && _day < other.getDay());
     }
 
+    /*
+     * public boolean after(Date other)
+     * Check if this date is after other date
+     * Parameters:
+     * other - date to compare this date to
+     * Returns:
+     * true if this date is after other date, otherwise false
+     */
     public boolean after(Date other) {
         // returning before with other in the parameter
         return other.before(this);
     }
 
+    /*
+     * public java.lang.String toString()
+     * 
+     * Returns a String that represents this date
+     * Overrides:
+     * toString in class java.lang.Object
+     * Returns:
+     * String that represents this date in the following format: day (2 digits) /
+     * month(2 digits) / year (4 digits) for example: 02/03/1998
+     */
     public String toString() {
         String dayString = (_day > ONE_DIGIT_NUMBER) ? _day + "" : "0" + _day;
         String monthString = (_month > ONE_DIGIT_NUMBER) ? _month + "" : "0" + _month;
         return dayString + "/" + monthString + "/" + _year;
     }
 
+    /*
+     * public int difference(Date other)
+     * Calculates the difference in days between two dates
+     * Parameters:
+     * other - the date to calculate the difference between
+     * Returns:
+     * the number of days between the dates (non negative value)
+     */
     public int difference(Date other) {
         // returning the absolute value between the two dates
         return Math.abs(calculateDate(_day, _month, _year)
@@ -165,6 +254,12 @@ public class Date {
         return 365 * year + year / 4 - year / 100 + year / 400 + ((month + 1) * 306) / 10 + (day - 62);
     }
 
+    /*
+     * public Date tomorrow()
+     * Calculate the date of tomorrow
+     * Returns:
+     * the date of tomorrow
+     */
     public Date tomorrow() {
         // creating a new date with the values of the current date
         Date tomorrow = new Date(this);
@@ -226,6 +321,14 @@ public class Date {
         return tomorrow;
     }
 
+    // sets the date to default value (1/1/2000)
+    private void setDefault() {
+        _day = DEFAULT_DAY;
+        _month = DEFAULT_MONTH;
+        _year = DEFAULT_YEAR;
+    }
+
+    // return true if the given year is a leap year, false otherwise
     private boolean isLeapYear(int year) {
         // instantiating first to false
         boolean isLeapYear = false;
