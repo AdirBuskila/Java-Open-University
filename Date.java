@@ -226,7 +226,7 @@ public class Date {
         return tomorrow;
     }
 
-    public boolean isLeapYear(int year) {
+    private boolean isLeapYear(int year) {
         // instantiating first to false
         boolean isLeapYear = false;
         // checking if dividable by four with no remainder
@@ -244,5 +244,10 @@ public class Date {
         }
         // if no change to isLeapYear false is returned
         return isLeapYear;
+    }
+
+    public static void main(String[] args) {
+        Date d1 = new Date(34, DEFAULT_MONTH, DEFAULT_YEAR);
+        System.out.println(d1);
     }
 }
