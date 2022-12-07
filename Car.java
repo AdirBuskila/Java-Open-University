@@ -9,6 +9,10 @@ public class Car {
     private boolean _isManual;
 
     /*
+     * public Car(int id,
+     * char type,
+     * java.lang.String brand,
+     * boolean isManual)
      * Creates a new Car object
      * id should be a 7 digits number, otherwise set it to 9999999
      * type should be 'A','B','C' or 'D', otherwise set it to 'A'
@@ -29,6 +33,8 @@ public class Car {
     }
 
     /*
+     * public Car(Car other)
+     * 
      * Copy constructor
      * Parameters:
      * other - the car to be copied
