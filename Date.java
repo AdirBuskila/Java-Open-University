@@ -245,9 +245,4 @@ public class Date {
         // if no change to isLeapYear false is returned
         return isLeapYear;
     }
-
-    public static void main(String[] args) {
-        Date d1 = new Date(34, DEFAULT_MONTH, DEFAULT_YEAR);
-        System.out.println(d1);
-    }
 }
