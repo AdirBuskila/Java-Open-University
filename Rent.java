@@ -35,7 +35,7 @@ public class Rent {
         _pickDate = pick;
         // checking if the difference between the pickDate and
         // the returnDate is less than 1
-        _returnDate = (pick.difference(ret) < MIN_DAYS) ? _pickDate.tomorrow() : ret;
+        _returnDate = (pick.difference(ret) < MIN_DAYS) ? pick.tomorrow() : ret;
 
     }
 
