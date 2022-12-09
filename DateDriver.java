@@ -27,9 +27,9 @@ public class DateDriver {
         System.out.println("d2 = " + d2);
         // check if the dates are equal
         if (d1.equals(d2)) {
-            System.out.println("Same Date");
+            System.out.println("Same date");
         } else {
-            System.out.println("Different Dates");
+            System.out.println("Different dates");
         }
         d1.setMonth(6);
         System.out.println("Updated month in d1: " + d1.getMonth());
@@ -43,7 +43,7 @@ public class DateDriver {
         // if not equal print the order
         // of the dates by: before, after
         if (d1.equals(d2)) {
-            System.out.println("Same Date");
+            System.out.println("Same dates");
         } else if (d2.before(d1)) {
             System.out.println("Before: " + d2);
             System.out.println("After: " + d1);
