@@ -7,6 +7,7 @@ public class Car {
     private char _type;
     private String _brand;
     private boolean _isManual;
+    private boolean isOk;
 
     /*
      * public Car(int id,
