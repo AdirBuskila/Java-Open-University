@@ -214,7 +214,6 @@ public class Date {
         if (isValidDate(day, month, year)) {
             return new Date(day, month, year);
         }
-        day = 1;
         month = 1;
         year += 1;
         return new Date(day, month, year);
