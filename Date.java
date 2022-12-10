@@ -33,12 +33,11 @@ public class Date {
      * 
      */
     public Date(int day, int month, int year) {
+        this();
         if (isValidDate(day, month, year)) {
             _day = day;
             _month = month;
             _year = year;
-        } else {
-            setDefault();
         }
     }
 
@@ -51,6 +50,13 @@ public class Date {
      */
     public Date(Date other) {
         this(other.getDay(), other.getMonth(), other.getYear());
+    }
+
+    // sets the date to default value (1/1/2000)
+    public Date() {
+        _day = DEFAULT_DAY;
+        _month = DEFAULT_MONTH;
+        _year = DEFAULT_YEAR;
     }
 
     /*
@@ -69,9 +75,9 @@ public class Date {
      * Parameters:
      * dayToSet - the day value to be set
      */
-    public void setDay(int day) {
-        if (isValidDate(day, _month, _year)) {
-            _day = day;
+    public void setDay(int dayToSet) {
+        if (isValidDate(dayToSet, _month, _year)) {
+            _day = dayToSet;
         }
     }
 
@@ -91,9 +97,9 @@ public class Date {
      * Parameters:
      * monthToSet - the month value to be set
      */
-    public void setMonth(int month) {
-        if (isValidDate(_day, month, _year)) {
-            _month = month;
+    public void setMonth(int monthToSet) {
+        if (isValidDate(_day, monthToSet, _year)) {
+            _month = monthToSet;
         }
     }
 
@@ -113,9 +119,9 @@ public class Date {
      * Parameters:
      * yearToSet - the year value to be set
      */
-    public void setYear(int year) {
-        if (isValidDate(_day, _month, year)) {
-            _year = year;
+    public void setYear(int yearToSet) {
+        if (isValidDate(_day, _month, yearToSet)) {
+            _year = yearToSet;
         }
     }
 
@@ -258,13 +264,6 @@ public class Date {
                 break;
         }
         return true;
-    }
-
-    // sets the date to default value (1/1/2000)
-    private void setDefault() {
-        _day = DEFAULT_DAY;
-        _month = DEFAULT_MONTH;
-        _year = DEFAULT_YEAR;
     }
 
     // return true if the given year is a leap year, false otherwise
