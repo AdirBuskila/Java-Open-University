@@ -260,22 +260,4 @@ public class Rent {
                 + howManyDays() + " Price:" + getPrice();
     }
 
-    public static void main(String[] args) {
-        Car busiCar = new Car(1234567, 'A', "Ford", false);
-        Date d1 = new Date(10, 3, 2022);
-        Date d2 = new Date(14, 11, 2022);
-        Rent r1 = new Rent("Busi", busiCar, d1, d2);
-        Rent r2 = new Rent("Busi", busiCar, d1, d2);
-        System.out.println("---equals---");
-        System.out.println(r1.equals(r2)); // true
-        System.out.println("---howManyDays---");
-        r1 = new Rent("Busi", busiCar, new Date(1, 2, 2022), new Date(8, 2, 2022));
-        System.out.println(r1.howManyDays()); // 7
-        System.out.println("---getPrice---");
-        System.out.println(r1.getPrice()); // 630
-        r1.setReturnDate(new Date(10, 2, 2022));
-        System.out.println(r1.howManyDays()); // 9
-        System.out.println(r1.getPrice()); // 830
-
-    }
 }
