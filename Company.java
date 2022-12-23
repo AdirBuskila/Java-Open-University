@@ -1,8 +1,8 @@
 public class Company {
     final private static int MAX_RENTS = 1000;
 
-    private static Rent[] _rents;
-    private static int _noOfRents;
+    private Rent[] _rents;
+    private int _noOfRents;
 
     public Company() {
         _rents = new Rent[MAX_RENTS];
@@ -38,6 +38,8 @@ public class Company {
             return false;
         }
         int index = getInsertDeleteIndex(d, false);
+        if (index == -1)
+            return false;
         Rent[] newRents = new Rent[MAX_RENTS];
         for (int i = 0, k = 0; i < _noOfRents; i++) {
             if (i == index) {
@@ -50,22 +52,23 @@ public class Company {
         return true;
     }
 
-    private int getInsertDeleteIndex(Date pickupDate, boolean isPickup) {
+    private int getInsertDeleteIndex(Date date, boolean isPickup) {
         int index = _noOfRents;
         if (isPickup) {
             for (int i = 0; i < _noOfRents; i++) {
                 Date curPickupDate = _rents[i].getPickDate();
-                if (pickupDate.before(curPickupDate)) {
+                if (date.before(curPickupDate)) {
                     return i;
                 }
             }
         } else {
             for (int i = 0; i < _noOfRents; i++) {
                 Date curReturnDate = _rents[i].getReturnDate();
-                if (pickupDate.equals(curReturnDate)) {
+                if (date.equals(curReturnDate)) {
                     return i;
                 }
             }
+            return -1;
         }
         return index;
     }
@@ -77,7 +80,7 @@ public class Company {
             return _rents[0].getCar();
         }
         Rent rent = _rents[0]; // getting the first rent
-        for (int i = 1; i < _noOfRents - 1; i++) {
+        for (int i = 1; i < _noOfRents; i++) {
             Rent curRent = _rents[i];
             if (curRent.getReturnDate().after(rent.getReturnDate())) {
                 rent = curRent;
@@ -102,17 +105,17 @@ public class Company {
         return days;
     }
 
-    public int averageRent() {
+    public double averageRent() {
         if (_noOfRents == 0) {
             return 0;
         }
-        return (getSumOfDays() / _noOfRents);
+        return ((double) getSumOfDays() / (double) _noOfRents);
     }
 
     public char mostCommonRate() {
 
         if (_noOfRents == 0) {
-            return 0;
+            return 'N';
         }
 
         char previous = _rents[0].getCar().getType();
@@ -152,7 +155,8 @@ public class Company {
         Rent[] longArray = new Rent[MAX_RENTS];
         int index = 0;
         int longestSoFar = 0;
-        for (Rent rent : _rents) {
+        for (int i = 0; i < _noOfRents; i++) {
+            Rent rent = _rents[i];
             if (rent.howManyDays() > longestSoFar) {
                 longestSoFar = rent.howManyDays();
                 index = 0;
@@ -174,7 +178,8 @@ public class Company {
         str += "The company has " + _noOfRents + " rents:\n";
         for (int i = 0; i < _noOfRents; i++) {
             str += _rents[i].toString();
-            str += "\n";
+            if (i != _noOfRents - 1)
+                str += "\n";
         }
         return str;
     }
