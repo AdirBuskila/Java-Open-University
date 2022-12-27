@@ -1,6 +1,20 @@
 /*
  * Created by: Adir Buskila
  * required Classes: Date, Car, Rent, Company
+ * required Methods:
+ *  ***ADD THESE METHODS! (CRUCIAL FOR TESTER)***
+ * 
+ * public int getNumOfRents() {
+ *  return _noOfRents;
+ *       }
+ * 
+ * public Rent[] getRents() {
+ *        return _rents;
+ *   }
+ * 
+ * *** IMPORTANT! ***
+ *  after using the tester remove the methods before submitting
+ * 
  * if you find any bugs at the test please notify me :)
  */
 
