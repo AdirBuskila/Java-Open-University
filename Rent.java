@@ -31,11 +31,11 @@ public class Rent {
      */
     public Rent(String name, Car car, Date pick, Date ret) {
         _name = name;
-        _car = car;
-        _pickDate = pick;
+        _car = new Car(car);
+        _pickDate = new Date(pick);
         // checking if the difference between the pickDate and
         // the returnDate is less than 1
-        _returnDate = (pick.difference(ret) < MIN_DAYS) ? pick.tomorrow() : ret;
+        _returnDate = (pick.difference(ret) < MIN_DAYS) ? _pickDate.tomorrow() : new Date(ret);
 
     }
 
