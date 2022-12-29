@@ -15,13 +15,13 @@ public class Rent {
     private Date _pickDate;
     private Date _returnDate;
 
-    public Rent(String name, Car car, Date pickupDate, Date returnDate) {
+    public Rent(String name, Car car, Date pick, Date ret) {
         _name = name;
         _car = new Car(car);
-        _pickDate = new Date(pickupDate);
+        _pickDate = new Date(pick);
         // checking if the difference between the pickDate and
         // the returnDate is less than 1
-        _returnDate = (pickupDate.difference(returnDate) < MIN_DAYS) ? _pickDate.tomorrow() : new Date(returnDate);
+        _returnDate = (pick.difference(ret) < MIN_DAYS) ? _pickDate.tomorrow() : new Date(ret);
 
     }
 
