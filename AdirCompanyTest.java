@@ -142,7 +142,14 @@ public class AdirCompanyTest {
         c1.addRent("Rent 14", carA, d11, d12);
         c1.addRent("Rent 16", carA, d11, d12);
         test(c1.mostCommonRate() == 'A');
+        c1.addRent("Rent 13", carB, d11, d12);
+        c1.addRent("Rent 14", carB, d11, d12);
+        c1.addRent("Rent 16", carB, d11, d12);
+        test(c1.mostCommonRate() == 'B'); // B > A
         System.out.println("---Testing toString---");
+        c1.removeRent(d12);
+        c1.removeRent(d12);
+        c1.removeRent(d12);
         c1.removeRent(d12);
         c1.removeRent(d12);
         c1.removeRent(d12);
