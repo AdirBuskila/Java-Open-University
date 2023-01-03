@@ -61,6 +61,7 @@ public class Company {
                     return i;
                 }
             }
+            return index;
         } else {
             for (int i = 0; i < _noOfRents; i++) {
                 Date curReturnDate = _rents[i].getReturnDate();
@@ -70,7 +71,6 @@ public class Company {
             }
             return -1;
         }
-        return index;
     }
 
     public Car lastCarRent() {
@@ -116,27 +116,52 @@ public class Company {
 
         if (_noOfRents == 0) {
             return 'N';
+        } else if (_noOfRents == 1) {
+            return _rents[0].getCar().getType();
         }
 
-        char previous = _rents[0].getCar().getType();
-        char popular = _rents[0].getCar().getType();
-        int count = 1;
-        int maxCount = 1;
+        char[] rates = { 'A', 'B', 'C', 'D' };
+        int[] frequencies = new int[rates.length];
 
-        for (int i = 1; i < _noOfRents; i++) {
-            if (_rents[i].getCar().getType() == previous)
-                count++;
-            else {
-                if (count > maxCount) {
-                    popular = _rents[i - 1].getCar().getType();
-                    maxCount = count;
-                }
-                previous = _rents[i].getCar().getType();
-                count = 1;
+        for (int i = 0; i < _noOfRents; i++) {
+            switch (_rents[i].getCar().getType()) {
+                case 'A':
+                    frequencies[0] += 1;
+                    break;
+                case 'B':
+                    frequencies[1] += 1;
+                    break;
+                case 'C':
+                    frequencies[2] += 1;
+                    break;
+                case 'D':
+                    frequencies[3] += 1;
+                    break;
+                default:
+                    break;
             }
         }
-
-        return count > maxCount ? _rents[_noOfRents - 1].getCar().getType() : popular;
+        int max = -1;// setting as first
+        int maxIndex = -1;
+        int maxIndexTwo = -1;
+        for (int i = 0; i < frequencies.length; i++) {
+            if (frequencies[i] > max) {
+                max = frequencies[i];
+                maxIndex = i;
+            } else if (max != 0 && frequencies[i] == max) {
+                maxIndexTwo = i;
+            }
+        }
+        System.out.println("maxIndex = " + maxIndex);
+        System.out.println("maxIndexTwo = " + maxIndexTwo);
+        if (maxIndexTwo == -1)
+            return rates[maxIndex];
+        else {
+            if (rates[maxIndex] > rates[maxIndexTwo])
+                return rates[maxIndex];
+            else
+                return rates[maxIndexTwo];
+        }
 
     }
 
