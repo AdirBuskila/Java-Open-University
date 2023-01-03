@@ -152,8 +152,6 @@ public class Company {
                 maxIndexTwo = i;
             }
         }
-        System.out.println("maxIndex = " + maxIndex);
-        System.out.println("maxIndexTwo = " + maxIndexTwo);
         if (maxIndexTwo == -1)
             return rates[maxIndex];
         else {
