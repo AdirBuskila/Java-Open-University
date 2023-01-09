@@ -29,6 +29,11 @@ public class AdirMagicSquareTest {
                 { 2, 1, 2 },
                 { 2, 2, 2 }
         };
+        int[][] mat4 = {
+                { 2, 2, 2, 7, 7, 7, 7 },
+                { 2, 2, 2, 7, 7, 7, 7 },
+                { 2, 2, 2, 7, 7, 7, 7 }
+        };
         System.out.println("---Testing sumCol---");
         System.out.println("---mat---");
         test(MagicSquare.sumCol(mat, 0) == 15);
@@ -78,7 +83,9 @@ public class AdirMagicSquareTest {
         test(MagicSquare.isMagicSquare(mat2));
         System.out.println("---mat3---");
         test(!MagicSquare.isMagicSquare(mat3));
-
+        System.out.println("IMPORTANT");
+        System.out.println("---mat4---");
+        test(MagicSquare.isMagicSquare(mat4));
     }
 
     private static void test(boolean testCondition) {
