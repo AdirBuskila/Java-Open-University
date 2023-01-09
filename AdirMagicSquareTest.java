@@ -47,6 +47,14 @@ public class AdirMagicSquareTest {
         test(MagicSquare.sumCol(mat2, 0) == 6);
         test(MagicSquare.sumCol(mat2, 1) == 6);
         test(MagicSquare.sumCol(mat2, 2) == 6);
+        System.out.println("---mat3---");
+        test(MagicSquare.sumCol(mat3, 0) == 6);
+        test(MagicSquare.sumCol(mat3, 1) == 5);
+        test(MagicSquare.sumCol(mat3, 2) == 6);
+        System.out.println("---mat4---");
+        test(MagicSquare.sumCol(mat4, 0) == 6);
+        test(MagicSquare.sumCol(mat4, 1) == 6);
+        test(MagicSquare.sumCol(mat4, 2) == 6);
         System.out.println("---Testing sumRow---");
         System.out.println("---mat---");
         test(MagicSquare.sumRow(mat, 0) == 15);
@@ -60,12 +68,24 @@ public class AdirMagicSquareTest {
         test(MagicSquare.sumRow(mat2, 0) == 6);
         test(MagicSquare.sumRow(mat2, 1) == 6);
         test(MagicSquare.sumRow(mat2, 2) == 6);
+        System.out.println("---mat3---");
+        test(MagicSquare.sumRow(mat3, 0) == 6);
+        test(MagicSquare.sumRow(mat3, 1) == 5);
+        test(MagicSquare.sumRow(mat3, 2) == 6);
+        System.out.println("---mat4---");
+        test(MagicSquare.sumRow(mat4, 0) == 6);
+        test(MagicSquare.sumRow(mat4, 1) == 6);
+        test(MagicSquare.sumRow(mat4, 2) == 6);
         System.out.println("---Testing sumPrimaryDiag---");
         System.out.println("---mat---");
         test(MagicSquare.sumPrimaryDiag(mat) == 15);
         System.out.println("---mat1---");
         test(MagicSquare.sumPrimaryDiag(mat1) == 3);
         System.out.println("---mat2---");
+        test(MagicSquare.sumPrimaryDiag(mat2) == 6);
+        System.out.println("---mat3---");
+        test(MagicSquare.sumSecondaryDiag(mat3) == 5);
+        System.out.println("---mat4---");
         test(MagicSquare.sumPrimaryDiag(mat2) == 6);
         System.out.println("---Testing sumSecondaryDiag---");
         System.out.println("---mat---");
@@ -74,6 +94,10 @@ public class AdirMagicSquareTest {
         test(MagicSquare.sumSecondaryDiag(mat1) == 3);
         System.out.println("---mat2---");
         test(MagicSquare.sumSecondaryDiag(mat2) == 6);
+        System.out.println("---mat3---");
+        test(MagicSquare.sumSecondaryDiag(mat3) == 5);
+        System.out.println("---mat4---");
+        test(MagicSquare.sumSecondaryDiag(mat3) == 6);
         System.out.println("---Testing isMagicSquare---");
         System.out.println("---mat---");
         test(MagicSquare.isMagicSquare(mat));
@@ -83,7 +107,6 @@ public class AdirMagicSquareTest {
         test(MagicSquare.isMagicSquare(mat2));
         System.out.println("---mat3---");
         test(!MagicSquare.isMagicSquare(mat3));
-        System.out.println("IMPORTANT");
         System.out.println("---mat4---");
         test(MagicSquare.isMagicSquare(mat4));
     }
