@@ -40,6 +40,8 @@ public class AdirCompanyTest {
         Car carC = new Car(123456789, 'C', "Ford", false);
         Car carD = new Car(123456789, 'D', "Ford", false);
         Rent r1 = new Rent("Rent 1", carA, d1, d2);
+        Rent r1After = new Rent("Rent 1 After", carA, d1, d2);
+        Rent r1AfterAfter = new Rent("Rent 1 After After", carA, d1, d2);
         Rent r2 = new Rent("Rent 2", carB, d2, d3);
         Rent r3 = new Rent("Rent 3", carC, d3, d4);
         Rent r4 = new Rent("Rent 4", carC, d4, d5);
@@ -64,6 +66,7 @@ public class AdirCompanyTest {
         System.out.println("---Testing Constructor---");
         Company c = new Company();
         Company c1 = new Company();
+        Company c2 = new Company();
         test(c.getNumOfRents() == 0);
         test(c.getRents().length == 1000);
         c.addRent("Rent 8", carC, d8, d9);
@@ -74,7 +77,13 @@ public class AdirCompanyTest {
         c.addRent("Rent 3", carC, d3, d4);
         c.addRent("Rent 2", carB, d2, d3);
         c.addRent("Rent 1", carA, d1, d2);
+        c2.addRent("Rent 1", carA, d1, d2);
+        c2.addRent("Rent 1 After", carA, d1, d2);
+        c2.addRent("Rent 1 After After", carA, d1, d2);
         System.out.println("---Testing addRent---");
+        test(c2.getRents()[2].equals(r1AfterAfter));
+        test(c2.getRents()[1].equals(r1After));
+        test(c2.getRents()[0].equals(r1));
         test(c.getRents()[0].equals(r1));
         test(c.getRents()[1].equals(r2));
         test(c.getRents()[2].equals(r3));

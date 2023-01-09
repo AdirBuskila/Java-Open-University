@@ -207,49 +207,4 @@ public class Company {
         return str;
     }
 
-    public static void main(String[] args) {
-        Date d1 = new Date(1, 1, 2000);
-        Date d2 = new Date(6, 1, 2000);
-        Date d3 = new Date(8, 1, 2000);
-        Date d4 = new Date(10, 1, 2000);
-        Date d5 = new Date(16, 1, 2000);
-        Date d6 = new Date(20, 1, 2000);
-        Date d7 = new Date(22, 1, 2000);
-        Date d8 = new Date(25, 1, 2000);
-        Date d9 = new Date(29, 1, 2000);
-        Date d10 = new Date(3, 2, 2000);
-        Date d11 = new Date(10, 2, 2000);
-        Date d12 = new Date(20, 2, 2000);
-        Car carA = new Car(123456789, 'A', "Ford", false);
-        Car carB = new Car(123456789, 'B', "Ford", false);
-        Car carC = new Car(123456789, 'C', "Ford", false);
-        Car carD = new Car(123456789, 'D', "Ford", false);
-        Rent r1 = new Rent("Rent 1", carA, d1, d2);
-        Rent r2 = new Rent("Rent 2", carB, d2, d3);
-        Rent r3 = new Rent("Rent 3", carC, d3, d4);
-        Rent r4 = new Rent("Rent 4", carC, d4, d5);
-        Rent r5 = new Rent("Rent 5", carC, d5, d6);
-        Rent r6 = new Rent("Rent 6", carC, d6, d7);
-        Rent r7 = new Rent("Rent 7", carC, d7, d8);
-        Rent r8 = new Rent("Rent 8", carC, d8, d9);
-        Rent r10 = new Rent("Rent 10", carC, d10, d11);
-        Rent r11 = new Rent("Rent 11", carD, d11, d12);
-        String toStringTest = "The company has 11 rents:\n" +
-                "Name:Rent 1 From:01/01/2000 To:06/01/2000 Type:A Days:5 Price:500\n" +
-                "Name:Rent 2 From:06/01/2000 To:08/01/2000 Type:B Days:2 Price:300\n" +
-                "Name:Rent 3 From:08/01/2000 To:10/01/2000 Type:C Days:2 Price:360\n" +
-                "Name:Rent 4 From:10/01/2000 To:16/01/2000 Type:C Days:6 Price:1080\n" +
-                "Name:Rent 5 From:16/01/2000 To:20/01/2000 Type:C Days:4 Price:720\n" +
-                "Name:Rent 6 From:20/01/2000 To:22/01/2000 Type:C Days:2 Price:360\n" +
-                "Name:Rent 7 From:22/01/2000 To:25/01/2000 Type:C Days:3 Price:540\n" +
-                "Name:Rent 8 From:25/01/2000 To:29/01/2000 Type:C Days:4 Price:720\n" +
-                "Name:Rent 9 From:29/01/2000 To:03/02/2000 Type:C Days:5 Price:900\n" +
-                "Name:Rent 10 From:03/02/2000 To:10/02/2000 Type:C Days:7 Price:1134\n" +
-                "Name:Rent 11 From:10/02/2000 To:20/02/2000 Type:D Days:10 Price:2232";
-        System.out.println("---Testing Constructor---");
-        Company c = new Company();
-        Company c1 = new Company();
-        System.out.println(c.mostCommonRate());
-    }
-
 }
