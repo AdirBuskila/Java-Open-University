@@ -17,7 +17,7 @@ public class Company {
         } else if (_noOfRents == MAX_RENTS) {
             return false;
         }
-        int index = getInsertDeleteIndex(pickupDate, true);
+        int index = getInsertIndex(pickupDate, returnDate);
         Rent[] newRents = new Rent[MAX_RENTS];
         int j = 0;
         _noOfRents++;
@@ -50,6 +50,24 @@ public class Company {
         _rents = newRents;
         _noOfRents--;
         return true;
+    }
+
+    private int getInsertIndex(Date pick, Date ret) {
+        int index = _noOfRents;
+        for (int i = 0; i < _noOfRents; i++) {
+            Date curPickupDate = _rents[i].getPickDate();
+            Date curReturnDate = _rents[i].getReturnDate();
+            if (pick.equals(curPickupDate) && ret.after(curReturnDate)) {
+                return i;
+            }
+            if (pick.equals(curPickupDate) && curPickupDate.after(ret)) {
+                return i;
+            }
+            if (pick.before(curPickupDate)) {
+                return i;
+            }
+        }
+        return index;
     }
 
     private int getInsertDeleteIndex(Date date, boolean isPickup) {
@@ -205,6 +223,20 @@ public class Company {
                 str += "\n";
         }
         return str;
+    }
+
+    public static void main(String[] args) {
+        Date d1 = new Date(1, 1, 2000);
+        Date d2 = new Date(6, 1, 2000);
+        Date d7 = new Date(22, 1, 2000);
+        Date d9 = new Date(29, 1, 2000);
+        Car carA = new Car(123456789, 'A', "Ford", false);
+        Company c2 = new Company();
+        c2.addRent("Rent 12 After After", carA, d1, d2);
+        c2.addRent("Rent 12 After", carA, d1, d7);
+        c2.addRent("Rent 12", carA, d1, d9);
+        System.out.println("c2 = " + c2);
+
     }
 
 }

@@ -40,8 +40,6 @@ public class AdirCompanyTest {
         Car carC = new Car(123456789, 'C', "Ford", false);
         Car carD = new Car(123456789, 'D', "Ford", false);
         Rent r1 = new Rent("Rent 1", carA, d1, d2);
-        Rent r1After = new Rent("Rent 1 After", carA, d1, d2);
-        Rent r1AfterAfter = new Rent("Rent 1 After After", carA, d1, d2);
         Rent r2 = new Rent("Rent 2", carB, d2, d3);
         Rent r3 = new Rent("Rent 3", carC, d3, d4);
         Rent r4 = new Rent("Rent 4", carC, d4, d5);
@@ -51,6 +49,9 @@ public class AdirCompanyTest {
         Rent r8 = new Rent("Rent 8", carC, d8, d9);
         Rent r10 = new Rent("Rent 10", carC, d10, d11);
         Rent r11 = new Rent("Rent 11", carD, d11, d12);
+        Rent r12 = new Rent("Rent 12", carA, d1, d9);
+        Rent r12After = new Rent("Rent 12 After", carA, d1, d7);
+        Rent r12AfterAfter = new Rent("Rent 12 After After", carA, d1, d2);
         String toStringTest = "The company has 11 rents:\n" +
                 "Name:Rent 1 From:01/01/2000 To:06/01/2000 Type:A Days:5 Price:500\n" +
                 "Name:Rent 2 From:06/01/2000 To:08/01/2000 Type:B Days:2 Price:300\n" +
@@ -77,13 +78,13 @@ public class AdirCompanyTest {
         c.addRent("Rent 3", carC, d3, d4);
         c.addRent("Rent 2", carB, d2, d3);
         c.addRent("Rent 1", carA, d1, d2);
-        c2.addRent("Rent 1", carA, d1, d2);
-        c2.addRent("Rent 1 After", carA, d1, d2);
-        c2.addRent("Rent 1 After After", carA, d1, d2);
+        c2.addRent("Rent 12 After After", carA, d1, d2);
+        c2.addRent("Rent 12 After", carA, d1, d7);
+        c2.addRent("Rent 12", carA, d1, d9);
         System.out.println("---Testing addRent---");
-        test(c2.getRents()[2].equals(r1AfterAfter));
-        test(c2.getRents()[1].equals(r1After));
-        test(c2.getRents()[0].equals(r1));
+        test(c2.getRents()[0].equals(r12));
+        test(c2.getRents()[1].equals(r12After));
+        test(c2.getRents()[2].equals(r12AfterAfter));
         test(c.getRents()[0].equals(r1));
         test(c.getRents()[1].equals(r2));
         test(c.getRents()[2].equals(r3));
