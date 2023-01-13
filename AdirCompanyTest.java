@@ -40,6 +40,8 @@ public class AdirCompanyTest {
         Car carC = new Car(123456789, 'C', "Ford", false);
         Car carD = new Car(123456789, 'D', "Ford", false);
         Rent r1 = new Rent("Rent 1", carA, d1, d2);
+        Rent r1After = new Rent("Rent 1 After", carA, d1, d2);
+        Rent r1AfterAfter = new Rent("Rent 1 After After", carA, d1, d2);
         Rent r2 = new Rent("Rent 2", carB, d2, d3);
         Rent r3 = new Rent("Rent 3", carC, d3, d4);
         Rent r4 = new Rent("Rent 4", carC, d4, d5);
@@ -49,21 +51,18 @@ public class AdirCompanyTest {
         Rent r8 = new Rent("Rent 8", carC, d8, d9);
         Rent r10 = new Rent("Rent 10", carC, d10, d11);
         Rent r11 = new Rent("Rent 11", carD, d11, d12);
-        Rent r12 = new Rent("Rent 12", carA, d1, d9);
-        Rent r12After = new Rent("Rent 12 After", carA, d1, d7);
-        Rent r12AfterAfter = new Rent("Rent 12 After After", carA, d1, d2);
         String toStringTest = "The company has 11 rents:\n" +
-                "Name:Rent 1 From:01/01/2000 To:06/01/2000 Type:A Days:5 Price:500\n" +
-                "Name:Rent 2 From:06/01/2000 To:08/01/2000 Type:B Days:2 Price:300\n" +
-                "Name:Rent 3 From:08/01/2000 To:10/01/2000 Type:C Days:2 Price:360\n" +
-                "Name:Rent 4 From:10/01/2000 To:16/01/2000 Type:C Days:6 Price:1080\n" +
-                "Name:Rent 5 From:16/01/2000 To:20/01/2000 Type:C Days:4 Price:720\n" +
-                "Name:Rent 6 From:20/01/2000 To:22/01/2000 Type:C Days:2 Price:360\n" +
-                "Name:Rent 7 From:22/01/2000 To:25/01/2000 Type:C Days:3 Price:540\n" +
-                "Name:Rent 8 From:25/01/2000 To:29/01/2000 Type:C Days:4 Price:720\n" +
-                "Name:Rent 9 From:29/01/2000 To:03/02/2000 Type:C Days:5 Price:900\n" +
-                "Name:Rent 10 From:03/02/2000 To:10/02/2000 Type:C Days:7 Price:1134\n" +
-                "Name:Rent 11 From:10/02/2000 To:20/02/2000 Type:D Days:10 Price:2232";
+                "Name:Rent 1 From:01/01/2000 To:06/01/2000 Type:A Days:6 Price:600\n" +
+                "Name:Rent 2 From:06/01/2000 To:08/01/2000 Type:B Days:3 Price:450\n" +
+                "Name:Rent 3 From:08/01/2000 To:10/01/2000 Type:C Days:3 Price:540\n" +
+                "Name:Rent 4 From:10/01/2000 To:16/01/2000 Type:C Days:7 Price:1134\n" +
+                "Name:Rent 5 From:16/01/2000 To:20/01/2000 Type:C Days:5 Price:900\n" +
+                "Name:Rent 6 From:20/01/2000 To:22/01/2000 Type:C Days:3 Price:540\n" +
+                "Name:Rent 7 From:22/01/2000 To:25/01/2000 Type:C Days:4 Price:720\n" +
+                "Name:Rent 8 From:25/01/2000 To:29/01/2000 Type:C Days:5 Price:900\n" +
+                "Name:Rent 9 From:29/01/2000 To:03/02/2000 Type:C Days:6 Price:1080\n" +
+                "Name:Rent 10 From:03/02/2000 To:10/02/2000 Type:C Days:8 Price:1314\n" +
+                "Name:Rent 11 From:10/02/2000 To:20/02/2000 Type:D Days:11 Price:2472";
         System.out.println("---Testing Constructor---");
         Company c = new Company();
         Company c1 = new Company();
@@ -78,13 +77,13 @@ public class AdirCompanyTest {
         c.addRent("Rent 3", carC, d3, d4);
         c.addRent("Rent 2", carB, d2, d3);
         c.addRent("Rent 1", carA, d1, d2);
-        c2.addRent("Rent 12 After After", carA, d1, d2);
-        c2.addRent("Rent 12 After", carA, d1, d7);
-        c2.addRent("Rent 12", carA, d1, d9);
+        c2.addRent("Rent 1", carA, d1, d2);
+        c2.addRent("Rent 1 After", carA, d1, d2);
+        c2.addRent("Rent 1 After After", carA, d1, d2);
         System.out.println("---Testing addRent---");
-        test(c2.getRents()[0].equals(r12));
-        test(c2.getRents()[1].equals(r12After));
-        test(c2.getRents()[2].equals(r12AfterAfter));
+        test(c2.getRents()[2].equals(r1AfterAfter));
+        test(c2.getRents()[1].equals(r1After));
+        test(c2.getRents()[0].equals(r1));
         test(c.getRents()[0].equals(r1));
         test(c.getRents()[1].equals(r2));
         test(c.getRents()[2].equals(r3));
@@ -109,28 +108,28 @@ public class AdirCompanyTest {
         test(!c.removeRent(d9));
         test(c.getRents()[6] == null);
         System.out.println("---Testing getSumOfPrices---");
-        test(c.getSumOfPrices() == 3360);
+        test(c.getSumOfPrices() == 4284);
         test(c1.getSumOfPrices() == 0);
         c.addRent("Rent 8", carC, d8, d9);
         c.addRent("Rent 1", carA, d1, d2);
-        test(c.getSumOfPrices() == 4580);
+        test(c.getSumOfPrices() == 5784);
         System.out.println("---Testing getSumOfDays---");
         c.removeRent(d2);
         c.removeRent(d9);
-        test(c.getSumOfDays() == 19);
+        test(c.getSumOfDays() == 25);
         test(c1.getSumOfDays() == 0);
         c.addRent("Rent 8", carC, d8, d9);
         c.addRent("Rent 1", carA, d1, d2);
-        test(c.getSumOfDays() == 28);
+        test(c.getSumOfDays() == 36);
         System.out.println("---Testing averageRent---");
         test(c1.averageRent() == 0);
-        test(c.averageRent() == 3.5);
+        test(c.averageRent() == 4.5);
         c.addRent("Rent 9", carC, d9, d10);
-        test(c.averageRent() == 3.6666666666666665);
+        test(c.averageRent() == 4.666666666666667);
         c.addRent("Rent 10", carC, d10, d11);
-        test(c.averageRent() == 4.0);
+        test(c.averageRent() == 5.0);
         c.addRent("Rent 11", carD, d11, d12);
-        test(c.averageRent() == 4.545454545454546);
+        test(c.averageRent() == 5.545454545454546);
         System.out.println("---Testing lastCarRent---");
         test(c1.lastCarRent() == null);
         test(c.lastCarRent().equals(carD));
