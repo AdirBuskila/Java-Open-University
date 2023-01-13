@@ -37,7 +37,7 @@ public class Company {
         if (_noOfRents == 0) {
             return false;
         }
-        int index = getInsertDeleteIndex(d, false);
+        int index = getDeleteIndex(d);
         if (index == -1)
             return false;
         Rent[] newRents = new Rent[MAX_RENTS];
@@ -70,25 +70,15 @@ public class Company {
         return index;
     }
 
-    private int getInsertDeleteIndex(Date date, boolean isPickup) {
-        int index = _noOfRents;
-        if (isPickup) {
-            for (int i = 0; i < _noOfRents; i++) {
-                Date curPickupDate = _rents[i].getPickDate();
-                if (date.before(curPickupDate)) {
-                    return i;
-                }
+    private int getDeleteIndex(Date date) {
+        for (int i = 0; i < _noOfRents; i++) {
+            Date curReturnDate = _rents[i].getReturnDate();
+            if (date.equals(curReturnDate)) {
+                return i;
             }
-            return index;
-        } else {
-            for (int i = 0; i < _noOfRents; i++) {
-                Date curReturnDate = _rents[i].getReturnDate();
-                if (date.equals(curReturnDate)) {
-                    return i;
-                }
-            }
-            return -1;
         }
+        return -1;
+
     }
 
     public Car lastCarRent() {
