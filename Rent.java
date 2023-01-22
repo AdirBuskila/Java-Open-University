@@ -15,6 +15,20 @@ public class Rent {
     private Date _pickDate;
     private Date _returnDate;
 
+    /*
+     * public Rent​(java.lang.String name,
+     * Car car,
+     * Date pick,
+     * Date ret)
+     * Creates a new Rent object
+     * The return date must be at least one day after the pick up date, otherwise
+     * set it to one day after the pick up date.
+     * Parameters:
+     * name - the client name
+     * car - the rented car
+     * pick - the pickup date
+     * ret - the return date
+     */
     public Rent(String name, Car car, Date pick, Date ret) {
         _name = name;
         _car = new Car(car);
@@ -25,6 +39,12 @@ public class Rent {
 
     }
 
+    /*
+     * public Rent​(Rent other)
+     * Copy constructor
+     * Parameters:
+     * other - the rent to be copied
+     */
     public Rent(Rent other) {
         _name = other.getName();
         _car = new Car(other.getCar());
@@ -32,6 +52,13 @@ public class Rent {
         _returnDate = new Date(other.getReturnDate());
     }
 
+    /*
+     * public void setName​(java.lang.String name)
+     * Sets the client name
+     * Parameters:
+     * name - the client name (You can assume that the name is a valid name)
+     * 
+     */
     public void setName(String name) {
         // checking if the name is not an empty string
         if (name != "") {
@@ -39,10 +66,22 @@ public class Rent {
         }
     }
 
+    /*
+     * public java.lang.String getName()
+     * Gets the name
+     * Returns:
+     * the name
+     */
     public String getName() {
         return _name;
     }
 
+    /*
+     * public void setCar​(Car car)
+     * Sets the rented car
+     * Parameters:
+     * car - the rented car (You can assume that car is not null)
+     */
     public void setCar(Car car) {
         // checking if the car is not equal to null
         if (car != null) {
@@ -50,10 +89,24 @@ public class Rent {
         }
     }
 
+    /*
+     * public Car getCar()
+     * Gets the car
+     * Returns:
+     * the car
+     */
     public Car getCar() {
         return new Car(_car);
     }
 
+    /*
+     * public void setPickDate​(Date pickDate)
+     * Sets the pick up date
+     * The pick up date must be at least one day before the return date, otherwise -
+     * don't change the pick up date
+     * Parameters:
+     * pickDate - the pick up date (You can assume that pick up date is not null)
+     */
     public void setPickDate(Date pickDate) {
         // checking if the pickDate is not equal to null
         if (pickDate != null) {
@@ -61,11 +114,25 @@ public class Rent {
         }
     }
 
+    /*
+     * public Date getPickDate()
+     * Gets the pick up date
+     * Returns:
+     * the pick up date
+     */
     public Date getPickDate() {
         return new Date(_pickDate);
 
     }
 
+    /*
+     * public void setReturnDate​(Date returnDate)
+     * Sets the return date
+     * The return date must be at least one day after the pick up date, otherwise -
+     * don't change the return date
+     * Parameters:
+     * returnDate - the return date (You can assume that return date is not null)
+     */
     public void setReturnDate(Date returnDate) {
         // checking if the returnDate is not equal to null
         if (returnDate != null) {
@@ -73,10 +140,24 @@ public class Rent {
         }
     }
 
+    /*
+     * public Date getReturnDate()
+     * Gets the return date
+     * Returns:
+     * the return date
+     */
     public Date getReturnDate() {
         return new Date(_returnDate);
     }
 
+    /*
+     * public boolean equals​(Rent other)
+     * Check if 2 rents are the same
+     * Parameters:
+     * other - the rent to compare this rent to
+     * Returns:
+     * true if the rents are the same
+     */
     public boolean equals(Rent other) {
         return (_name.equals(other.getName())
                 && _car.equals(other.getCar())
@@ -84,12 +165,24 @@ public class Rent {
                 && _returnDate.equals(other.getReturnDate()));
     }
 
+    /*
+     * public int howManyDays()
+     * Returns the number of rent days
+     * Returns:
+     * the number of rent days
+     */
     public int howManyDays() {
         // returning how many days is between the pickupDate
         // and the returnDate
         return (_pickDate.difference(_returnDate));
     }
 
+    /*
+     * public int getPrice()
+     * Returns the rent total price
+     * Returns:
+     * the rent total price
+     */
     public int getPrice() {
         // getting the how many rental days are there
         int rentalDays = howManyDays();
@@ -127,6 +220,17 @@ public class Rent {
         return price;
     }
 
+    /*
+     * public int upgrade​(Car car)
+     * Try to upgrade the car to a better car
+     * If the given car is better than the current car of the rent, upgrade it and
+     * return the upgrade additional cost, otherwise - don't upgrade
+     * Parameters:
+     * car - the car to upgrade to
+     * Returns:
+     * the upgrade cost
+     * 
+     */
     public int upgrade(Car newCar) {
         // checking if the current car is better than the new car
         if (_car.better(newCar)) {
@@ -142,6 +246,15 @@ public class Rent {
         return (newPrice - oldPrice);
     }
 
+    /*
+     * public java.lang.String toString()
+     * Returns a String that represents this rent
+     * Overrides:
+     * toString in class java.lang.Object
+     * Returns:
+     * String that represents this rent in the following format:
+     * Name:Rama From:30/10/2022 To:12/11/2022 Type:B Days:13 Price:1845
+     */
     public String toString() {
         return "Name:" + _name + " From:" + _pickDate + " To:" + _returnDate + " Type:" + _car.getType() + " Days:"
                 + howManyDays() + " Price:" + getPrice();
