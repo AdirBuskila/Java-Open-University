@@ -42,6 +42,7 @@ public class Company {
             return false;
         Rent[] newRents = new Rent[MAX_RENTS];
         for (int i = 0, k = 0; i < _noOfRents; i++) {
+            // 1 2 3
             if (i == index) {
                 continue;
             }

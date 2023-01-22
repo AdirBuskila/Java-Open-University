@@ -78,12 +78,13 @@ public class AdirCompanyTest {
         c.addRent("Rent 2", carB, d2, d3);
         c.addRent("Rent 1", carA, d1, d2);
         c2.addRent("Rent 1", carA, d1, d2);
-        c2.addRent("Rent 1 After", carA, d1, d2);
-        c2.addRent("Rent 1 After After", carA, d1, d2);
+        c2.addRent("Rent 1 After", carA, d1, d5);
+        c2.addRent("Rent 1 After After", carA, d1, d6);
         System.out.println("---Testing addRent---");
-        test(c2.getRents()[2].equals(r1AfterAfter));
-        test(c2.getRents()[1].equals(r1After));
+        System.out.println(c2);
         test(c2.getRents()[0].equals(r1));
+        test(c2.getRents()[1].equals(r1After));
+        test(c2.getRents()[2].equals(r1AfterAfter));
         test(c.getRents()[0].equals(r1));
         test(c.getRents()[1].equals(r2));
         test(c.getRents()[2].equals(r3));
