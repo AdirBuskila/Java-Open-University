@@ -116,7 +116,7 @@ public class Company {
     }
 
     /*
-     * public boolean getDeleteIndex(Date ret)
+     * public int getDeleteIndex(Date ret)
      * getting the index of the rent that needs to be removed
      * going through the array and if the return Date is equals to current return
      * Date

@@ -84,7 +84,7 @@ public class MagicSquare {
     }
 
     /*
-     * public static int isMagicSquare(int[][] mat)
+     * public static boolean isMagicSquare(int[][] mat)
      * checking if a given matrix of numbers is a magic square be these rules:
      * if the sum of the rows, the sum of the columns,
      * the sum of the primary diagonal and the sum of the secondary diagonal
