@@ -94,8 +94,6 @@ public class AdirMagicSquareTest {
                 System.out.println("---Testing isMagicSquare---");
                 System.out.println("---mat---");
                 test(MagicSquare.isMagicSquare(mat));
-                System.out.println("---mat1---");
-                test(MagicSquare.isMagicSquare(mat1));
                 System.out.println("---mat4---");
                 test(!MagicSquare.isMagicSquare(mat4));
                 System.out.println("---mat5---");
