@@ -109,8 +109,12 @@ public class MagicSquare {
             checkMat[index] = index + 1;
             index++;
         }
-        for (int i = 0; i < checkMat.length; i++) {
-            System.out.println("checkMat[i] = " + checkMat[i]);
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                int curNum = mat[i][j];
+                if (!insideArray(checkMat, curNum))
+                    return false;
+            }
         }
 
         int sumRow;
@@ -125,6 +129,14 @@ public class MagicSquare {
             }
         }
         return true;
+    }
+
+    private static boolean insideArray(int[] arr, int num) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num)
+                return true;
+        }
+        return false;
     }
 
 }
