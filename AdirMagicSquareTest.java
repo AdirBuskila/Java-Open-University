@@ -38,6 +38,16 @@ public class AdirMagicSquareTest {
                                 { 2, 9, 4, 1 },
                                 { 7, 5, 3, 2 },
                                 { 6, 1, 8, 3 } };
+                int[][] mat6 = {
+                                { -2, -9, -4 },
+                                { -7, -5, -3 },
+                                { -6, -1, -8 } };
+                int[][] mat7 = {
+                                { 4, 14, 15, 1 },
+                                { 9, 7, 6, 12 },
+                                { 5, 11, 10, 8 },
+                                { 16, 2, 3, 13 }
+                };
 
                 System.out.println("---Testing sumCol---");
                 System.out.println("---mat---");
@@ -98,6 +108,10 @@ public class AdirMagicSquareTest {
                 test(!MagicSquare.isMagicSquare(mat4));
                 System.out.println("---mat5---");
                 test(!MagicSquare.isMagicSquare(mat5));
+                System.out.println("---mat6---");
+                test(!MagicSquare.isMagicSquare(mat6));
+                System.out.println("---mat7---");
+                test(MagicSquare.isMagicSquare(mat7));
         }
 
         private static void test(boolean testCondition) {
