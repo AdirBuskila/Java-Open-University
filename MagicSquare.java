@@ -92,6 +92,26 @@ public class MagicSquare {
      * mat - matrix of integers
      */
     public static boolean isMagicSquare(int[][] mat) {
+        if (mat.length != mat[0].length)
+            return false;
+        int nSquared = mat.length * mat.length;
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                if (mat[i][j] < 1)
+                    return false;
+            }
+        }
+
+        int checkMat[] = new int[nSquared];
+        int index = 0;
+        while (index <= nSquared - 1) {
+            checkMat[index] = index + 1;
+            index++;
+        }
+        for (int i = 0; i < checkMat.length; i++) {
+            System.out.println("checkMat[i] = " + checkMat[i]);
+        }
 
         int sumRow;
         int sumCol;
