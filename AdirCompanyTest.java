@@ -163,7 +163,7 @@ public class AdirCompanyTest {
         c1.removeRent(d12);
         c1.removeRent(d12);
         c1.removeRent(d12);
-        test(c1.toString() == "The company has 0 rents.");
+        test(c1.toString().equals("The company has 0 rents."));
         test(c.toString().equals(toStringTest));
 
     }
