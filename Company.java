@@ -26,7 +26,7 @@ public class Company {
      * Date pick,
      * Date ret
      * )
-     * adding a new rent bases on these rules:
+     * adding a new rent based on these rules:
      * if its the first rent to be added, add to the first place (_rents[0]) return
      * true
      * if its the number of rents is at its maximum, don't add and return false
